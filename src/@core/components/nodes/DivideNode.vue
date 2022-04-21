@@ -6,7 +6,7 @@
         <div class="box">
             <input v-if="false" type="number" v-model="value1" df-num1>
             <input v-if="false" type="number" v-model="value2" df-num2>
-            <input v-if="true" disabled="true" df-num type="number" v-model="value3">
+            <input v-if="true" disabled="true" df-num type="number" >
             <p v-if="value1 || value2 ">{{value1}}/{{value2}}</p>
             <p v-if="result">{{result}}</p>
         </div>

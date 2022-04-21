@@ -1,6 +1,6 @@
 <template>
   <div :class="contentWidth === 'boxed' ? 'container p-0' : null">
-    <router-view />
+    
   </div>
 </template>
 

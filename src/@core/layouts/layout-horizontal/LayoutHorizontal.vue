@@ -7,23 +7,7 @@
   >
 
     <!-- NAVBAR -->
-    <b-navbar
-      :style="{
-        backgroundColor: navbarType === 'static' && scrolledTo && skin === 'light' ? 'white' : null,
-        boxShadow: navbarType === 'static' && scrolledTo ? 'rgba(0, 0, 0, 0.05) 0px 4px 20px 0px' : null,
-      }"
-      :toggleable="false"
-      class="header-navbar navbar-shadow align-items-center navbar-brand-center navbar-fixed"
-      :class="{'fixed-top': $store.getters['app/currentBreakPoint'] !== 'xl'}"
-    >
-      <slot
-        name="navbar"
-        :toggleVerticalMenuActive="toggleVerticalMenuActive"
-      >
-        <app-navbar-horizontal-layout-brand />
-        <app-navbar-horizontal-layout :toggle-vertical-menu-active="toggleVerticalMenuActive" />
-      </slot>
-    </b-navbar>
+   
     <!--/ NAVBAR -->
 
     <div class="horizontal-menu-wrapper">

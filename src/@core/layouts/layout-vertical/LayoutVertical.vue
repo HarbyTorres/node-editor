@@ -1,6 +1,6 @@
 <template>
   <div
-    class="vertical-layout h-100"
+    
     :class="[layoutClasses]"
     :data-col="isNavMenuHidden ? '1-column' : null"
   >

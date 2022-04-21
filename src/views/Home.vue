@@ -2,14 +2,15 @@
 <div class="content-area-wrapper">
    <div class="sidebar-left show">
      <ul v-for="item in items" :key="item">
-       <div class="drag-drawflow" draggable="true" @dragstart="startDrag($event)" :data-node=item>
+       <b-button variant="gradient-primary" draggable="true" @dragstart="startDrag($event)" :data-node=item>
         <span> {{item}}</span>
-      </div>
+      </b-button>
      </ul>
+         <b-button variant="gradient-primary" @click="exportjs">Export</b-button>
+    <b-button variant="gradient-primary" @click="importjs">Import</b-button>
     </div >
   <div  class="content-right" id="drawflow" @drop="onDrop($event)" @dragover.prevent @dragenter.prevent>
-    <div class="btn-export" @click="exportjs">Export</div>
-    <div class="btn-clear" @click="importjs">Import</div>
+
   </div>
 </div>
 </template>
@@ -25,6 +26,8 @@ import NumNode from '@core/components/nodes/NumNode.vue'
 import DivideNode from '@core/components/nodes/DivideNode.vue'
 import MultiplyNode from '@core/components/nodes/MultiplyNode.vue'
 import AssingNode from '@core/components/nodes/AssingNode.vue'
+import IfNode from '@core/components/nodes/IfNode.vue'
+import { BButton } from 'bootstrap-vue'
 
 let editor
 export default {
@@ -40,6 +43,10 @@ export default {
         'if'
       ]
     }
+    
+  },
+  components: {
+    BButton,
   },
 
   mounted() {
@@ -51,6 +58,7 @@ export default {
     editor.registerNode('divide', DivideNode);
     editor.registerNode('multiply', MultiplyNode);
     editor.registerNode('assing', AssingNode);
+    editor.registerNode('if', IfNode);
     editor.start();
 
     editor.on('nodeDataChanged', (id)=>{
@@ -126,7 +134,7 @@ export default {
 
       switch (name) {
         case 'Number':
-          editor.addNode('number', 0,  1, pos_x, pos_y, 'Class', {"num": ''}, 'numbervue', 'vue');
+          editor.addNode('number', 0,  1, pos_x, pos_y, 'number', {"num": ''}, 'numbervue', 'vue');
           break;
         case 'Add':
           editor.addNode('add', 2, 1, pos_x, pos_y, 'add', {}, 'sumnode', 'vue' );
@@ -143,6 +151,8 @@ export default {
         case 'Assing':
           editor.addNode('assing', 1, 1, pos_x, pos_y, 'assing', {}, 'assing', 'vue' );
           break;
+        case 'If':
+          editor.addNode('if', 1, 2, pos_x, pos_y, "if", {}, 'if', 'vue' );
       }
     },
 
