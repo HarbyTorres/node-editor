@@ -18,6 +18,7 @@
 <script>
 /*eslint-disable */
 import Vue from 'vue'
+import axios from 'axios'
 import Drawflow from 'drawflow'
 import styleDrawflow from 'drawflow/dist/drawflow.min.css'
 import SumNode from '@core/components/nodes/SumNode.vue'
@@ -93,10 +94,17 @@ export default {
 
   methods: {
     exportjs(){
-      console.log(editor.export())
+      //console.log(editor.export())
+      axios.get("http://localhost:8080/drawflow").then((result) => {
+      console.log(result.data);
+      })
     },
     importjs(){
+      axios.get("http://localhost:8080/drawflow").then((result) => {
+      console.log(result.data);
+      })
       editor.import()
+
     },
 
     updateData(nodeId, value1, value2){

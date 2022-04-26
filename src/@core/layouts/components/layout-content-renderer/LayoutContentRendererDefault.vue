@@ -3,8 +3,7 @@
     class="app-content content"
     :class="[{'show-overlay': $store.state.app.shallShowOverlay}, $route.meta.contentClass]"
   >
-    <div class="content-overlay" />
-    <div class="header-navbar-shadow" />
+
     <div
       class="content-wrapper"
       :class="contentWidth === 'boxed' ? 'container p-0' : null"
