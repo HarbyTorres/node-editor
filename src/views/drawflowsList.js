@@ -8,28 +8,34 @@ import ToastificationContent from '@core/components/toastification/Toastificatio
 export default function useDrawflowList(){
 
   const toast = useToast()
+  const tableColumns = [
+    { key: 'id', sortable: true },
+    { key: 'name', sortable: true },
+    { key: 'createdAt', sortable: true },
+    { key: 'actions' },
+  ]
 
   const fetchDrawflows = (ctx, callback) => {
-      store
-        .dispatch('app-drawflow/fetchDrawflows', {
-
+    store
+      .dispatch('app-drawflow/fetchDrawflows', {
+      })
+      .then(response => {
+        const drawflows = response.data.data.queryDrawflow   
+        callback(drawflows)
+      })
+      .catch(() => {
+        toast({
+          component: ToastificationContent,
+          props: {
+            title: 'Error fetching Drawflows list',
+            icon: 'AlertTriangleIcon',
+            variant: 'danger',
+          },
         })
-        .then(response => {
-          const drawflows = response.data.data.queryDrawflow   
-          callback(drawflows)
-        })
-        .catch(() => {
-          toast({
-            component: ToastificationContent,
-            props: {
-              title: 'Error fetching Drawflows list',
-              icon: 'AlertTriangleIcon',
-              variant: 'danger',
-            },
-          })
-        })
-    }
-    return {
-      fetchDrawflows
+      })
+  }
+  return {
+    fetchDrawflows,
+    tableColumns
   }
 }

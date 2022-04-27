@@ -29,6 +29,7 @@ import MultiplyNode from '@core/components/nodes/MultiplyNode.vue'
 import AssingNode from '@core/components/nodes/AssingNode.vue'
 import IfNode from '@core/components/nodes/IfNode.vue'
 import { BButton } from 'bootstrap-vue'
+import Drawflows from './home'
 
 let editor
 export default {
@@ -94,17 +95,11 @@ export default {
 
   methods: {
     exportjs(){
-      //console.log(editor.export())
-      axios.get("http://localhost:8080/drawflow").then((result) => {
-      console.log(result.data);
-      })
+      console.log(editor.export())
     },
     importjs(){
-      axios.get("http://localhost:8080/drawflow").then((result) => {
-      console.log(result.data);
-      })
+      alert(this.$router.currentRoute.params.body)
       editor.import()
-
     },
 
     updateData(nodeId, value1, value2){

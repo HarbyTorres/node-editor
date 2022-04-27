@@ -11,7 +11,7 @@ const router = new VueRouter({
   },
   routes: [
     {
-      path: '/',
+      path: '/:body',
       name: 'home',
       component: () => import('@/views/Home.vue'),
       meta: {
