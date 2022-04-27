@@ -5,6 +5,21 @@
     :data-col="isNavMenuHidden ? '1-column' : null"
   >
     <!-- Navbar -->
+    <b-navbar
+      :toggleable="false"
+      :variant="navbarBackgroundColor"
+      class="header-navbar navbar navbar-shadow align-items-center"
+      :class="[navbarTypeClass]"
+    >
+      <slot
+        name="navbar"
+        :toggleVerticalMenuActive="toggleVerticalMenuActive"
+        :navbarBackgroundColor="navbarBackgroundColor"
+        :navbarTypeClass="[...navbarTypeClass, 'header-navbar navbar navbar-shadow align-items-center']"
+      >
+        <app-navbar-vertical-layout :toggle-vertical-menu-active="toggleVerticalMenuActive" />
+      </slot>
+    </b-navbar>
     <!--/ Navbar -->
     <!-- Vertical Nav Menu -->
     <vertical-nav-menu
