@@ -15,6 +15,7 @@
         empty-text="No matching records found"
       >
         
+
         <!-- Column: Actions -->
         <template #cell(actions)="data">
           <b-dropdown
@@ -28,14 +29,9 @@
                 icon="MoreVerticalIcon"
                 size="16"
                 class="align-middle text-body"
-              />
+              /> 
             </template>
-            <b-dropdown-item :to="{ name: 'home', params: { body: data.item.body } }">
-              <feather-icon icon="FileTextIcon" />
-              <span class="align-middle ml-50">Details</span>
-            </b-dropdown-item>
-
-            <b-dropdown-item :to="{ name: 'apps-users-edit', params: { id: data.item.id } }">
+            <b-dropdown-item :to="{ name: 'home', params: { body: data.item.body }  }">
               <feather-icon icon="EditIcon" />
               <span class="align-middle ml-50">Edit</span>
             </b-dropdown-item>

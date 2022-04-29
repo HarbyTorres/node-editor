@@ -57,41 +57,30 @@
             variant="primary"
             class="btn-icon"
           >
-            <feather-icon icon="SettingsIcon" />
+            <feather-icon icon="ArchiveIcon" />
           </b-button>
         </template>
 
-        <b-dropdown-item :to="{ name: 'apps-todo' }">
+        <b-dropdown-item @click="handleTaskClick(); $emit('close-left-sidebar')">
           <feather-icon
-            icon="CheckSquareIcon"
+            icon="SaveIcon"
             size="16"
           />
-          <span class="align-middle ml-50">Todo</span>
+          <span class="align-middle ml-50">Save</span>
         </b-dropdown-item>
 
-        <b-dropdown-item :to="{ name: 'apps-chat' }">
+        <b-dropdown-item :to="{ name: 'home' }">
           <feather-icon
-            icon="MessageSquareIcon"
+            icon="CodeIcon"
             size="16"
           />
-          <span class="align-middle ml-50">Chat</span>
+          <span class="align-middle ml-50">Generate code</span>
         </b-dropdown-item>
 
-        <b-dropdown-item :to="{ name: 'apps-email' }">
-          <feather-icon
-            icon="MailIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">Email</span>
-        </b-dropdown-item>
+        <todo-task-handler-sidebar
+          v-model="isTaskHandlerSidebarActive"
+        />
 
-        <b-dropdown-item :to="{ name: 'apps-calendar' }">
-          <feather-icon
-            icon="CalendarIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">Calendar</span>
-        </b-dropdown-item>
       </b-dropdown>
     </b-col>
   </b-row>
@@ -99,13 +88,18 @@
 
 <script>
 import {
+  ref, watch, computed, onUnmounted,
+} from '@vue/composition-api'
+import {
   BBreadcrumb, BBreadcrumbItem, BRow, BCol, BDropdown, BDropdownItem, BButton,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
+import TodoTaskHandlerSidebar from '@/views/form/TodoTaskHandlerSidebar.vue'
 
 export default {
   directives: {
     Ripple,
+    TodoTaskHandlerSidebar
   },
   components: {
     BBreadcrumb,
@@ -115,6 +109,21 @@ export default {
     BDropdown,
     BDropdownItem,
     BButton,
+    TodoTaskHandlerSidebar,
   },
+
+  setup(){
+    const isTaskHandlerSidebarActive = ref(false)
+
+    const handleTaskClick = () => {
+
+      isTaskHandlerSidebarActive.value = true
+      console.log(isTaskHandlerSidebarActive)
+    }
+    return {
+      isTaskHandlerSidebarActive,
+      handleTaskClick
+    }
+  }
 }
 </script>

@@ -2,15 +2,12 @@
 <div class="content-area-wrapper">
    <div class="sidebar-left show">
      <ul v-for="item in items" :key="item">
-       <b-button variant="gradient-primary" draggable="true" @dragstart="startDrag($event)" :data-node=item>
+       <b-button variant="gradient-primary" block draggable="true" @dragstart="startDrag($event)" :data-node=item>
         <span> {{item}}</span>
       </b-button>
      </ul>
-         <b-button variant="gradient-primary" @click="exportjs">Export</b-button>
-    <b-button variant="gradient-primary" @click="importjs">Import</b-button>
     </div >
   <div  class="content-right" id="drawflow" @drop="onDrop($event)" @dragover.prevent @dragenter.prevent>
-
   </div>
 </div>
 </template>
@@ -63,6 +60,10 @@ export default {
     editor.registerNode('if', IfNode);
     editor.start();
 
+    if(this.$router.currentRoute.params.body != "error-404" && this.$router.currentRoute.params.body != undefined){
+      this.importjs()
+    }
+
     editor.on('nodeDataChanged', (id)=>{
       let newValue = editor.getNodeFromId(id).data.num
       console.log(newValue)
@@ -98,8 +99,7 @@ export default {
       console.log(editor.export())
     },
     importjs(){
-      alert(this.$router.currentRoute.params.body)
-      editor.import()
+      editor.import(this.$router.currentRoute.params.body)
     },
 
     updateData(nodeId, value1, value2){
@@ -172,4 +172,10 @@ export default {
 </script>
 
 <style scoped>
+
+#drawflow {
+  background: var(Secondary) ;
+  background-size: 3px 3px;
+  background-image: radial-gradient(rgb(98, 107, 203) 1px, transparent 1px);
+}
 </style>

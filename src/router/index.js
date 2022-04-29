@@ -25,18 +25,16 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/save-drawflow',
+      name: 'save-drawflow',
+      component: () => import('@/views/form/SaveDrawflow.vue'),
+      
+    },
+    {
       path: '/second-page',
       name: 'second-page',
       component: () => import('@/views/SecondPage.vue'),
-      meta: {
-        pageTitle: 'Second Page',
-        breadcrumb: [
-          {
-            text: 'Second Page',
-            active: true,
-          },
-        ],
-      },
+      
     },
     {
       path: '/error-404',
